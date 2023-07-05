@@ -1,10 +1,9 @@
-# Task 0 - Where am I?
+# Shell Basics
 
-This script prints the absolute path name of the current working directory.
+These scripts execute diffirent Shell commands
 
 ## Usage
 
 To run the script, execute the following command:
 
-./0-current_working_directory
-
+./<file name to be executed>
