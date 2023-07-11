@@ -1,0 +1,2 @@
+#!/bin/bash
+tail -n +2 | tr -s " " | cut -d " " -f 1,6 | sort -k 2 | cut -d " " -f 1 | head -n 11
