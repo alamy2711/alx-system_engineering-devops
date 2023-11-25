@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #This script kills the process 7-highlander
 
-t4_id="$("pgrep -f 7-highlander)"
+t4_id="$(pgrep -f 7-highlander)"
 kill -KILL "$t4_id"
