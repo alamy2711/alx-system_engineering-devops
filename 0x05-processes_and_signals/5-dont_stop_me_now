@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#This script tops 4-to_infinity_and_beyond process
+
+t4_id=$(pgrep -f 4-to_infinity_and_beyond)
+kill $t4_id
