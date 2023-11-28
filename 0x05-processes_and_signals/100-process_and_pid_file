@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # This script creates pub file with its own pid and receive SIG
 
-sudo bash -c "echo $$ > /var/run/codingschoolscript.pid"
-trap "sudo rm -f /var/run/codingschoolscript.pid; exit" SIGQUIT
-trap "sudo rm -f /var/run/codingschoolscript.pid; echo I hate the kill command; exit" SIGTERM
-trap "echo Y U no love me?!" SIGINT
-while :
+filePID="/var/run/myscript.pid"
+touch $filePID
+echo $$ > $filePID
+
+trap 'echo I hate the kill command; rm $filePID; kill -SIGKILL $$' SIGTERM
+trap 'echo Y U no love me?!; kill -SIGKILL $$' SIGINT
+trap 'rm $filePID; kill -SIGKILL $$' SIGQUIT
+
+while true
 do
 	echo "To infinity and beyond"
 	sleep 2
