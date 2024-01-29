@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Double the number of webservers
+FILEPATH="/etc/nginx/sites-available/default"
+FILEERR="/usr/share/nginx/html/404error.html"
+REDIRECTLOC="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=h_D3VFfhvs4;\n\t}\n"
+REDIRECTERR="\n\terror_page 404 /404error.html;\n\tlocation = /404error.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}\n"
+CUSTHEAD='\n\tadd_header X-Served-By $hostname;\n'
+STRING="Hello World!"
+FOUR="Ceci n'est pas une page"
+
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo "$STRING" > /var/www/html/index.nginx-debian.html
+sed -i "37i\ $REDIRECTLOC" "$FILEPATH"
+echo "$FOUR" > "$FILEERR"
+sed -i "37i\ $REDIRECTERR" "$FILEPATH"
+sed -i "37i\ $CUSTHEAD" "$FILEPATH"
+service nginx restart
