@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# This script configures a server to the above requirements
-rm /etc/nginx/sites-enabled/default
-ln --symbolic /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-service nginx restart

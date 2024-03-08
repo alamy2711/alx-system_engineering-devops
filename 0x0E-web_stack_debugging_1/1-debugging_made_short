@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Updated code of 0-nginx_likes_port_80
-ln --symbolic --force /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-service nginx start
-kill "$(pgrep 'nginx' | head -1)"
