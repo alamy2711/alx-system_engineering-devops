@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # Redirection
 # REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://github.com/alamy2711; \n\t}\n"
-REDIRECT='24i\       rewrite ^/redirect_me https://github.com/alamy2711 permanent;'
 FILE="/etc/nginx/sites-available/default"
 sudo apt-get -y update
 sudo apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
-sudo sed -i "37i\ $REDIRECT" "$FILE"
+sudo sed -i '24i\       rewrite ^/redirect_me https://github.com/alamy2711 permanent;' "$FILE"
 sudo service nginx restart
