@@ -2,7 +2,7 @@
 # Redirection
 # REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://github.com/alamy2711; \n\t}\n"
 FILE="/etc/nginx/sites-available/default"
-REDIRECT_URL="https://github.com/alamy2711;"
+# REDIRECT_URL="https://github.com/alamy2711;"
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
@@ -11,6 +11,6 @@ ufw allow 'Nginx HTTP'
 
 echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
 
-sudo sed -i '24i\       rewrite ^/redirect_me $REDIRECT_URL' $FILE
+sudo sed -i '24i\       rewrite ^/redirect_me https://github.com/alamy2711 permanent;' $FILE
 
 sudo service nginx restart
