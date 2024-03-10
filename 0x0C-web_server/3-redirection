@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Redirection
 # REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://github.com/alamy2711; \n\t}\n"
-FILE="/etc/nginx/sites-available/default"
+# FILE="/etc/nginx/sites-available/default"
 REDIRECT_URL="https://github.com/alamy2711;"
 
 sudo apt-get -y update
