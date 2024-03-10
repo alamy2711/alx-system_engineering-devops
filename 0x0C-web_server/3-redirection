@@ -2,14 +2,15 @@
 # Redirection
 # REDIRECT="\n\tlocation /redirect_me {\n\t\treturn 301 https://github.com/alamy2711; \n\t}\n"
 # REDIRECT_URL="https://github.com/alamy2711;"
-sudo apt-get update
-sudo apt-get install -y nginx
+FILE="/etc/nginx/sites-available/default"
 
+sudo apt-get -y update
+sudo apt-get -y install nginx
 
-# add the following configuration to the existing server block
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
+ufw allow 'Nginx HTTP'
 
-sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
 
-# Restart Nginx
+sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://github.com/alamy2711 permanent;' $FILE
+
 sudo service nginx restart
