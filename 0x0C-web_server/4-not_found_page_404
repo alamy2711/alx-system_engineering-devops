@@ -12,6 +12,6 @@ echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
 sudo sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://github.com/alamy2711 permanent;' $FILE
 
 echo "Ceci n'est pas une page" > /var/www/html/error_404.html
-sudo sed -i '/listen 80 default_server;/a rewrite error_page 404 /error_404.html;' $FILE
+sudo sed -i '/listen 80 default_server;/a error_page 404 /error_404.html;' $FILE
 
 sudo service nginx restart
