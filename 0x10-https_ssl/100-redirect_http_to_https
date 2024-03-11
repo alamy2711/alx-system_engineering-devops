@@ -44,7 +44,7 @@ frontend www-https
 backend www-backend
         balance roundrobin
         redirect scheme https code 301 if !{ ssl_fc }
-        server 459640-web-01 52.91.147.15:80 check
-        server 459640-web-02 52.91.147.53:80 check
+        server 459640-web-01 54.196.46.142:80 check
+        server 459640-web-02 54.146.59.55:80 check
 backend letsencrypt-backend
         server letsencrypt 127.0.0.1:54321
