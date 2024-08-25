@@ -1,0 +1,32 @@
+server {
+    listen 80;  # The server listens on port 80 (default HTTP port).
+
+    # The server_name directive specifies the IP addresses or domains the server should respond to.
+    server_name 127.0.0.1 18.215.160.42;
+
+    # Location block for requests to /airbnb-onepage/
+    location /airbnb-onepage/ {
+        include proxy_params;  # Include additional proxy configuration settings.
+        proxy_pass http://localhost:5000/airbnb-onepage/;  # Forward the request to the application running on port 5000.
+    }
+
+    # Location block for requests to /airbnb-dynamic/number_odd_or_even/
+    location /airbnb-dynamic/number_odd_or_even/ {
+        # Rewrite the request URL by removing the /airbnb-dynamic/ prefix and breaking out of the rewrite phase.
+        rewrite /airbnb-dynamic/(.*) $1 break;
+        include proxy_params;  # Include additional proxy configuration settings.
+        proxy_pass http://localhost:5001/number_odd_or_even;  # Forward the request to the application running on port 5001.
+    }
+
+    # Location block for requests to /api/
+    location /api/ {
+        include proxy_params;  # Include additional proxy configuration settings.
+        proxy_pass http://localhost:5002/api/;  # Forward the request to the application running on port 5002.
+    }
+
+    # Default location block for all other requests.
+    location / {
+        include proxy_params;  # Include additional proxy configuration settings.
+        proxy_pass http://localhost:5003/2-hbnb;  # Forward the request to the application running on port 5003 with the path /2-hbnb.
+    }
+}
